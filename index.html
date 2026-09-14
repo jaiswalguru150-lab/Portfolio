@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR SATYAM PRO - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --header-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --bg-color: #0f172a;
+            --surface: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --header-bg: rgba(30, 41, 59, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img, video { max-width: 100%; height: auto; display: block; }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a { font-weight: 500; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* Admin & Theme Buttons */
+        .btn-icon {
+            background: var(--surface); border: 1px solid var(--border-color);
+            color: var(--text-main); padding: 0.5rem 1rem; border-radius: 8px;
+            cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-icon:hover { background: var(--border-color); }
+
+        .btn-primary {
+            background: var(--primary); color: white; border: none;
+            padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 500;
+        }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .btn-danger {
+            background: #ef4444; color: white; border: none;
+            padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+        }
+        .btn-danger:hover { background: #dc2626; }
+
+        /* Main Layout */
+        main { padding-top: 80px; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border-color); }
+        .section:last-child { border-bottom: none; }
+        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; text-align: center; color: var(--primary); }
+
+        /* Profile Section */
+        .profile-section { display: flex; align-items: center; gap: 4rem; justify-content: center; min-height: 80vh; }
+        .profile-img-container { width: 300px; height: 300px; border-radius: 50%; overflow: hidden; border: 4px solid var(--primary); box-shadow: var(--shadow); flex-shrink: 0; }
+        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-content { max-width: 600px; }
+        .profile-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .profile-content h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; }
+        .profile-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .social-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .social-btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; color: white; cursor: pointer; }
+        .bg-wa { background: #25D366; } .bg-wa:hover { background: #1ebc59; }
+        .bg-ig { background: #E1306C; } .bg-ig:hover { background: #c12a5d; }
+        .bg-yt { background: #FF0000; } .bg-yt:hover { background: #cc0000; }
+        .bg-mail { background: #ea4335; } .bg-mail:hover { background: #c5372b; }
+
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .about-card { background: var(--surface); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); }
+        .about-card h3 { color: var(--primary); margin-bottom: 1rem; }
+        .about-list li { margin-bottom: 0.8rem; display: flex; gap: 1rem; }
+        .about-list strong { min-width: 100px; }
+
+        /* Services Section */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--surface); padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-5px); }
+        .service-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+        /* Projects Section */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .project-card { background: var(--surface); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+        .project-img { width: 100%; height: 200px; object-fit: cover; }
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { margin-bottom: 0.5rem; }
+        .project-info p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* Media Section */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .media-card { background: var(--surface); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+        .media-content { width: 100%; height: 220px; background: #000; display: flex; align-items: center; justify-content: center; }
+        .media-content img, .media-content video, .media-content iframe { width: 100%; height: 100%; object-fit: contain; border: none; }
+        .media-info { padding: 1rem; }
+        .media-info h4 { margin-bottom: 0.5rem; }
+        .media-info p { font-size: 0.9rem; color: var(--text-muted); }
+        .media-badge { display: inline-block; padding: 0.2rem 0.5rem; background: var(--primary); color: white; font-size: 0.7rem; border-radius: 4px; margin-bottom: 0.5rem; }
+
+        /* Contact Section */
+        .contact-container { display: flex; gap: 4rem; flex-wrap: wrap; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-form { flex: 1; min-width: 300px; background: var(--surface); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-control { width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); }
+        .form-control:focus { outline: none; border-color: var(--primary); }
+
+        /* Floating Buttons */
+        .floating-btns { position: fixed; bottom: 2rem; right: 2rem; display: flex; flex-direction: column; gap: 1rem; z-index: 900; }
+        .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow); border: none; color: white; }
+        .f-admin { background: var(--text-main); }
+        .f-wa { background: #25D366; }
+        .f-top { background: var(--primary); }
+
+        /* Admin Modal */
+        #adminOverlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;
+        }
+        .admin-modal {
+            background: var(--surface); width: 95%; max-width: 1000px; height: 90vh;
+            border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
+            position: relative;
+        }
+        .admin-header { padding: 1rem 2rem; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
+        .close-admin { cursor: pointer; font-size: 1.5rem; font-weight: bold; }
+        
+        #loginBox { display: flex; flex-direction: column; padding: 4rem; max-width: 400px; margin: auto; background: var(--surface); border-radius: 12px; width: 90%; }
+        #loginBox h2 { margin-bottom: 1.5rem; text-align: center; }
+        
+        #adminDashboard { display: none; flex: 1; display: flex; overflow: hidden; }
+        .admin-sidebar { width: 250px; background: var(--bg-color); border-right: 1px solid var(--border-color); overflow-y: auto; }
+        .admin-tab-btn { width: 100%; text-align: left; padding: 1rem; border: none; background: transparent; color: var(--text-main); cursor: pointer; font-weight: 500; border-bottom: 1px solid var(--border-color); }
+        .admin-tab-btn.active { background: var(--primary); color: white; }
+        .admin-content { flex: 1; padding: 2rem; overflow-y: auto; }
+        .admin-panel-section { display: none; }
+        .admin-panel-section.active { display: block; }
+
+        /* Admin Lists/Tables */
+        .admin-list-item { background: var(--bg-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); }
+        .admin-actions { display: flex; gap: 0.5rem; }
+
+        /* Utilities */
+        .d-none { display: none !important; }
+        .d-flex { display: flex !important; }
+        .text-center { text-align: center; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); padding: 1rem; box-shadow: var(--shadow); }
+            .nav-links.show { display: flex; }
+            .menu-toggle { display: block; }
+            .profile-section { flex-direction: column; text-align: center; gap: 2rem; margin-top: 2rem; }
+            .about-grid, .contact-container { flex-direction: column; display: flex; }
+            #adminDashboard { flex-direction: column; }
+            .admin-sidebar { width: 100%; display: flex; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .admin-tab-btn { white-space: nowrap; border-bottom: none; border-right: 1px solid var(--border-color); }
+            .social-btn-group { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">MR SATYAM PRO</div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" onclick="toggleMenu()">Profile</a>
+                <a href="#about" onclick="toggleMenu()">About Me</a>
+                <a href="#services" onclick="toggleMenu()">What I Do</a>
+                <a href="#projects" onclick="toggleMenu()">My Projects</a>
+                <a href="#media" onclick="toggleMenu()">Photos & Videos</a>
+                <a href="#contact" onclick="toggleMenu()">Contact</a>
+                <button class="btn-icon" onclick="window.openAdmin()">⚙️ Admin</button>
+                <button class="btn-icon" onclick="toggleTheme()" id="themeBtn">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Profile Section -->
+        <section id="home" class="section">
+            <div class="profile-section">
+                <div class="profile-img-container">
+                    <img id="pubProfileImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2NjYyI+PHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00czEuNzktNCA0LTRzLTQgMS43OS00IDQtMS43OSA0LTQgNHptMCAyYy0yLjY3IDAtOCAxLjM0LTggNHYyYTEgMSAwIDAgMCAxIDFoMTRhMSAxIDAgMCAwIDEtMXYtMmMwLTIuNjYtNS4zMy00LTgtNHoiLz48L3N2Zz4=" alt="Profile Photo">
+                </div>
+                <div class="profile-content">
+                    <h3 id="pubTagline">Professional Portfolio</h3>
+                    <h1 id="pubName">MR SATYAM PRO</h1>
+                    <p id="pubIntro">Welcome to my official website. I create amazing digital experiences.</p>
+                    
+                    <div class="social-btn-group">
+                        <a href="#projects" class="social-btn btn-primary">My Projects</a>
+                        <a href="#contact" class="social-btn btn-primary" style="background:var(--text-main)">Contact Me</a>
+                    </div>
+                    <div class="social-btn-group">
+                        <a id="btnWa" target="_blank" class="social-btn bg-wa">WhatsApp</a>
+                        <a id="btnIg" target="_blank" class="social-btn bg-ig">Instagram</a>
+                        <a id="btnYt" target="_blank" class="social-btn bg-yt">YouTube</a>
+                        <a id="btnMail" target="_blank" class="social-btn bg-mail">Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="section">
+            <h2 class="section-title" id="pubAboutTitle">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Who am I?</h3>
+                    <p id="pubAboutDesc" style="margin-bottom: 1.5rem;">I am a passionate creator dedicated to delivering high-quality digital solutions.</p>
+                    <ul class="about-list">
+                        <li><strong>Brand:</strong> <span id="pubBrand">MR SATYAM PRO</span></li>
+                        <li><strong>Work:</strong> <span id="pubWork">Freelancer</span></li>
+                        <li><strong>Email:</strong> <span id="pubAboutEmail">jaiswalguru150@gmail.com</span></li>
+                        <li><strong>WhatsApp:</strong> <span id="pubAboutWa">8543051953</span></li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3 id="pubGoalTitle">My Goal</h3>
+                    <p id="pubGoalDesc">To innovate and create projects that make a difference.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What I Do Section -->
+        <section id="services" class="section">
+            <h2 class="section-title">मैं क्या करता हूँ (What I Do)</h2>
+            <div class="services-grid" id="pubServicesList">
+                <!-- Services generated via JS -->
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid" id="pubProjectsList">
+                <!-- Projects generated via JS -->
+            </div>
+        </section>
+
+        <!-- Media Section -->
+        <section id="media" class="section">
+            <h2 class="section-title">My Photos & Videos</h2>
+            <div class="media-grid" id="pubMediaList">
+                <!-- Media generated via JS -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">Feel free to reach out for projects, collaborations, or just a chat.</p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <a id="contactWa" target="_blank" class="social-btn bg-wa" style="justify-content:center;">WhatsApp Message</a>
+                        <a id="contactIg" target="_blank" class="social-btn bg-ig" style="justify-content:center;">Instagram Profile</a>
+                        <a id="contactYt" target="_blank" class="social-btn bg-yt" style="justify-content:center;">YouTube Channel</a>
+                        <a id="contactMail" target="_blank" class="social-btn bg-mail" style="justify-content:center;">Send Email</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="waContactForm" onsubmit="sendWhatsAppMessage(event)">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="cwName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="cwEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project / Work</label>
+                            <input type="text" id="cwSubject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="cwMsg" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; background: #25D366;">Send Message on WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Buttons -->
+    <div class="floating-btns">
+        <button class="float-btn f-admin" onclick="window.openAdmin()" title="Admin Panel">⚙️</button>
+        <a id="floatWa" target="_blank" class="float-btn f-wa" title="WhatsApp">💬</a>
+        <button class="float-btn f-top" onclick="window.scrollTo(0,0)" title="Top">↑</button>
+    </div>
+
+    <!-- ADMIN PANEL MODAL -->
+    <div id="adminOverlay">
+        <div class="admin-modal">
+            <div class="admin-header">
+                <h2>⚙️ Admin Panel</h2>
+                <span class="close-admin" onclick="window.closeAdmin()">×</span>
+            </div>
+
+            <!-- Login Box -->
+            <div id="loginBox">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label>Password (Default: 1234)</label>
+                    <input type="password" id="adminPwd" class="form-control">
+                </div>
+                <button class="btn-primary" onclick="window.loginAdmin()">Login</button>
+                <p id="loginError" style="color:red; display:none; margin-top:10px;">Incorrect Password</p>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="adminDashboard" style="display: none;">
+                <div class="admin-sidebar">
+                    <button class="admin-tab-btn active" onclick="switchAdminTab('tabProfile', this)">👤 PROFILE</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tabProjects', this)">🚀 PROJECTS</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tabMedia', this)">🖼️ PHOTOS & VIDEOS</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tabContact', this)">📞 CONTACT</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tabServices', this)">🛠️ SERVICES</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tabSettings', this)">⚙️ SETTINGS</button>
+                    <button class="admin-tab-btn" style="color: #ef4444;" onclick="window.logoutAdmin()">🚪 LOGOUT</button>
+                </div>
+
+                <div class="admin-content">
+                    
+                    <!-- Profile Tab -->
+                    <div id="tabProfile" class="admin-panel-section active">
+                        <h3>Edit Profile & About Me</h3>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label>Profile Photo</label>
+                            <input type="file" id="aProfImg" class="form-control" accept="image/*">
+                            <div style="margin-top:0.5rem">
+                                <button class="btn-primary" onclick="saveProfileImage()">Upload Photo</button>
+                                <button class="btn-danger" onclick="removeProfileImage()">Remove Photo</button>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Name</label><input type="text" id="aName" class="form-control"></div>
+                        <div class="form-group"><label>Tagline</label><input type="text" id="aTagline" class="form-control"></div>
+                        <div class="form-group"><label>Introduction</label><textarea id="aIntro" class="form-control"></textarea></div>
+                        <hr style="margin:2rem 0; border-color:var(--border-color)">
+                        <div class="form-group"><label>About Title</label><input type="text" id="aAboutTitle" class="form-control"></div>
+                        <div class="form-group"><label>About Description</label><textarea id="aAboutDesc" class="form-control"></textarea></div>
+                        <div class="form-group"><label>Brand</label><input type="text" id="aBrand" class="form-control"></div>
+                        <div class="form-group"><label>Work</label><input type="text" id="aWork" class="form-control"></div>
+                        <div class="form-group"><label>Goal Title</label><input type="text" id="aGoalTitle" class="form-control"></div>
+                        <div class="form-group"><label>Goal Description</label><textarea id="aGoalDesc" class="form-control"></textarea></div>
+                        <button class="btn-primary" onclick="saveProfileData()">Save Profile & About</button>
+                    </div>
+
+                    <!-- Projects Tab -->
+                    <div id="tabProjects" class="admin-panel-section">
+                        <h3>Manage Projects</h3>
+                        <div style="background:var(--bg-color); padding:1.5rem; border-radius:8px; margin:1rem 0;">
+                            <h4>Add New Project</h4>
+                            <input type="hidden" id="projId">
+                            <div class="form-group"><label>Project Title</label><input type="text" id="projTitle" class="form-control"></div>
+                            <div class="form-group"><label>Project Description</label><textarea id="projDesc" class="form-control"></textarea></div>
+                            <div class="form-group"><label>Project Link URL</label><input type="text" id="projLink" class="form-control"></div>
+                            <div class="form-group"><label>Project Image</label><input type="file" id="projImgFile" class="form-control" accept="image/*"></div>
+                            <button class="btn-primary" onclick="saveProject()" id="btnSaveProj">Add Project</button>
+                            <button class="btn-icon" style="display:none;" id="btnCancelProj" onclick="resetProjectForm()">Cancel Edit</button>
+                        </div>
+                        <h4>Saved Projects</h4>
+                        <div id="adminProjectsList"></div>
+                    </div>
+
+                    <!-- Media Tab (IndexedDB) -->
+                    <div id="tabMedia" class="admin-panel-section">
+                        <h3>Media Manager</h3>
+                        <div style="background:var(--bg-color); padding:1.5rem; border-radius:8px; margin:1rem 0;">
+                            <h4>Add Content</h4>
+                            <div class="form-group">
+                                <label>Content Type</label>
+                                <select id="mediaType" class="form-control" onchange="toggleMediaInputs()">
+                                    <option value="IMAGE">IMAGE</option>
+                                    <option value="VIDEO">VIDEO FILE</option>
+                                    <option value="LINK">VIDEO LINK (YouTube)</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label>Title</label><input type="text" id="mediaTitle" class="form-control"></div>
+                            <div class="form-group"><label>Description</label><input type="text" id="mediaDesc" class="form-control"></div>
+                            
+                            <div class="form-group" id="mediaFileGrp">
+                                <label>Upload File</label>
+                                <input type="file" id="mediaFile" class="form-control" accept="image/*,video/*">
+                            </div>
+                            <div class="form-group" id="mediaLinkGrp" style="display:none;">
+                                <label>Video URL (YouTube)</label>
+                                <input type="text" id="mediaLinkUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                            </div>
+                            <button class="btn-primary" onclick="saveMedia()">Save Media</button>
+                        </div>
+                        <h4>Uploaded Media</h4>
+                        <div id="adminMediaList"></div>
+                    </div>
+
+                    <!-- Contact Tab -->
+                    <div id="tabContact" class="admin-panel-section">
+                        <h3>Update Contact Details</h3>
+                        <div class="form-group"><label>WhatsApp Number (With Country Code, e.g. 918543051953)</label><input type="text" id="cWa" class="form-control"></div>
+                        <div class="form-group"><label>Email Address</label><input type="email" id="cEmail" class="form-control"></div>
+                        <div class="form-group"><label>Instagram URL</label><input type="text" id="cIg" class="form-control"></div>
+                        <div class="form-group"><label>YouTube URL</label><input type="text" id="cYt" class="form-control"></div>
+                        <button class="btn-primary" onclick="saveContactData()">Save Contacts</button>
+                    </div>
+
+                    <!-- Services Tab -->
+                    <div id="tabServices" class="admin-panel-section">
+                        <h3>Manage Services</h3>
+                        <div style="background:var(--bg-color); padding:1.5rem; border-radius:8px; margin:1rem 0;">
+                            <h4>Add New Service</h4>
+                            <input type="hidden" id="srvId">
+                            <div class="form-group"><label>Icon (Emoji or Text)</label><input type="text" id="srvIcon" class="form-control" placeholder="💻"></div>
+                            <div class="form-group"><label>Service Title</label><input type="text" id="srvTitle" class="form-control"></div>
+                            <div class="form-group"><label>Service Description</label><textarea id="srvDesc" class="form-control"></textarea></div>
+                            <button class="btn-primary" onclick="saveService()" id="btnSaveSrv">Add Service</button>
+                            <button class="btn-icon" style="display:none;" id="btnCancelSrv" onclick="resetServiceForm()">Cancel Edit</button>
+                        </div>
+                        <h4>Saved Services</h4>
+                        <div id="adminServicesList"></div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="tabSettings" class="admin-panel-section">
+                        <h3>System Settings</h3>
+                        <div style="background:var(--bg-color); padding:1.5rem; border-radius:8px; margin:1rem 0;">
+                            <h4>Change Admin Password</h4>
+                            <div class="form-group"><label>Old Password</label><input type="password" id="pOld" class="form-control"></div>
+                            <div class="form-group"><label>New Password</label><input type="password" id="pNew" class="form-control"></div>
+                            <div class="form-group"><label>Confirm New Password</label><input type="password" id="pConfirm" class="form-control"></div>
+                            <button class="btn-primary" onclick="changePassword()">Update Password</button>
+                            <p style="font-size: 0.8rem; color:var(--text-muted); margin-top:1rem;">Note: This is a client-side protection for demo purposes.</p>
+                        </div>
+                        <div style="background:var(--bg-color); padding:1.5rem; border-radius:8px;">
+                            <h4>Theme Default</h4>
+                            <p>Website Default: LIGHT MODE. Visitors can toggle via top right icon.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript logic -->
+    <script>
+        // --- DATA STRUCTURE ---
+        const DEFAULT_DATA = {
+            profile: {
+                name: "MR SATYAM PRO",
+                tagline: "Professional Portfolio",
+                intro: "Welcome to my official website. I create amazing digital experiences.",
+                photo: "",
+                aboutTitle: "About Me",
+                aboutDesc: "I am a passionate creator dedicated to delivering high-quality digital solutions.",
+                brand: "MR SATYAM PRO",
+                work: "Video Editor & Web Developer",
+                goalTitle: "My Goal",
+                goalDesc: "To innovate and create digital projects that leave a lasting impact."
+            },
+            contact: {
+                whatsapp: "8543051953",
+                email: "jaiswalguru150@gmail.com",
+                instagram: "https://instagram.com/",
+                youtube: "https://youtube.com/"
+            },
+            services: [
+                { id: Date.now(), icon: "🎬", title: "Video Editing", desc: "Professional video editing for YouTube and social media." },
+                { id: Date.now()+1, icon: "💻", title: "Web Development", desc: "Creating responsive and fast websites." },
+                { id: Date.now()+2, icon: "🎨", title: "Graphic Designing", desc: "Eye-catching thumbnails, banners, and logos." }
+            ],
+            projects: [],
+            settings: { password: "1234" }
+        };
+
+        let appData = {};
+
+        // --- INIT & LOAD DATA ---
+        function initApp() {
+            let saved = localStorage.getItem('satyamProData');
+            if(saved) {
+                appData = JSON.parse(saved);
+                // Ensure all objects exist
+                if(!appData.profile) appData.profile = DEFAULT_DATA.profile;
+                if(!appData.contact) appData.contact = DEFAULT_DATA.contact;
+                if(!appData.services) appData.services = DEFAULT_DATA.services;
+                if(!appData.projects) appData.projects = DEFAULT_DATA.projects;
+                if(!appData.settings) appData.settings = DEFAULT_DATA.settings;
+            } else {
+                appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveData();
+            }
+
+            // Theme setup
+            let theme = localStorage.getItem('satyamTheme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.getElementById('themeBtn').innerText = theme === 'light' ? '🌙' : '☀️';
+
+            initDB();
+            renderAll();
+        }
+
+        function saveData() {
+            localStorage.setItem('satyamProData', JSON.stringify(appData));
+        }
+
+        function renderAll() {
+            renderProfile();
+            renderServices();
+            renderProjects();
+            updateContactLinks();
+        }
+
+        // --- RENDER FUNCTIONS ---
+        function renderProfile() {
+            const p = appData.profile;
+            const c = appData.contact;
+            
+            // Public side
+            document.getElementById('pubName').innerText = p.name;
+            document.getElementById('pubTagline').innerText = p.tagline;
+            document.getElementById('pubIntro').innerText = p.intro;
+            if(p.photo) document.getElementById('pubProfileImg').src = p.photo;
+            
+            document.getElementById('pubAboutTitle').innerText = p.aboutTitle;
+            document.getElementById('pubAboutDesc').innerText = p.aboutDesc;
+            document.getElementById('pubBrand').innerText = p.brand;
+            document.getElementById('pubWork').innerText = p.work;
+            document.getElementById('pubGoalTitle').innerText = p.goalTitle;
+            document.getElementById('pubGoalDesc').innerText = p.goalDesc;
+            
+            document.getElementById('pubAboutWa').innerText = c.whatsapp;
+            document.getElementById('pubAboutEmail').innerText = c.email;
+
+            // Admin side
+            document.getElementById('aName').value = p.name;
+            document.getElementById('aTagline').value = p.tagline;
+            document.getElementById('aIntro').value = p.intro;
+            document.getElementById('aAboutTitle').value = p.aboutTitle;
+            document.getElementById('aAboutDesc').value = p.aboutDesc;
+            document.getElementById('aBrand').value = p.brand;
+            document.getElementById('aWork').value = p.work;
+            document.getElementById('aGoalTitle').value = p.goalTitle;
+            document.getElementById('aGoalDesc').value = p.goalDesc;
+
+            document.getElementById('cWa').value = c.whatsapp;
+            document.getElementById('cEmail').value = c.email;
+            document.getElementById('cIg').value = c.instagram;
+            document.getElementById('cYt').value = c.youtube;
+        }
+
+        function renderServices() {
+            const pubList = document.getElementById('pubServicesList');
+            const adList = document.getElementById('adminServicesList');
+            pubList.innerHTML = ''; adList.innerHTML = '';
+
+            appData.services.forEach(s => {
+                // Public
+                pubList.innerHTML += `
+                    <div class="service-card">
+                        <div class="service-icon">${s.icon}</div>
+                        <h3>${s.title}</h3>
+                        <p>${s.desc}</p>
+                    </div>`;
+                // Admin
+                adList.innerHTML += `
+                    <div class="admin-list-item">
+                        <div><strong>${s.icon} ${s.title}</strong><br><small>${s.desc}</small></div>
+                        <div class="admin-actions">
+                            <button class="btn-icon" onclick="editService(${s.id})">Edit</button>
+                            <button class="btn-danger" onclick="deleteService(${s.id})">Delete</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderProjects() {
+            const pubList = document.getElementById('pubProjectsList');
+            const adList = document.getElementById('adminProjectsList');
+            pubList.innerHTML = ''; adList.innerHTML = '';
+
+            if(appData.projects.length === 0) {
+                pubList.innerHTML = `<p style="grid-column: 1/-1; text-align:center;">No projects added yet.</p>`;
+            }
+
+            appData.projects.forEach(p => {
+                let imgHtml = p.image ? `<img src="${p.image}" class="project-img" alt="Project">` : `<div class="project-img" style="background:#ddd; display:flex; align-items:center; justify-content:center; color:#666;">No Image</div>`;
+                
+                // Public
+                pubList.innerHTML += `
+                    <div class="project-card">
+                        ${imgHtml}
+                        <div class="project-info">
+                            <h3>${p.title}</h3>
+                            <p>${p.desc}</p>
+                            ${p.link ? `<a href="${p.link}" target="_blank" class="btn-primary">View Project</a>` : ''}
+                        </div>
+                    </div>`;
+                
+                // Admin
+                adList.innerHTML += `
+                    <div class="admin-list-item">
+                        <div style="display:flex; gap:1rem; align-items:center;">
+                            <div style="width:50px; height:50px; overflow:hidden; border-radius:4px;">
+                                ${p.image ? `<img src="${p.image}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="width:100%; height:100%; background:#ccc;"></div>`}
+                            </div>
+                            <div><strong>${p.title}</strong></div>
+                        </div>
+                        <div class="admin-actions">
+                            <button class="btn-icon" onclick="editProject(${p.id})">Edit</button>
+                            <button class="btn-danger" onclick="deleteProject(${p.id})">Delete</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function updateContactLinks() {
+            const c = appData.contact;
+            const waUrl = `https://wa.me/91${c.whatsapp.replace(/\D/g,'')}`;
+            const mailUrl = `mailto:${c.email}`;
+
+            // Hero buttons
+            document.getElementById('btnWa').href = waUrl;
+            document.getElementById('btnIg').href = c.instagram;
+            document.getElementById('btnYt').href = c.youtube;
+            document.getElementById('btnMail').href = mailUrl;
+
+            // Contact section buttons
+            document.getElementById('contactWa').href = waUrl;
+            document.getElementById('contactIg').href = c.instagram;
+            document.getElementById('contactYt').href = c.youtube;
+            document.getElementById('contactMail').href = mailUrl;
+
+            // Floating WhatsApp
+            document.getElementById('floatWa').href = waUrl;
+        }
+
+        // --- INDEXED DB FOR MEDIA ---
+        let db;
+        function initDB() {
+            if (!window.indexedDB) {
+                console.log("IndexedDB not supported.");
+                return;
+            }
+            const request = indexedDB.open("MrSatyamMediaDB", 1);
+            request.onupgradeneeded = function(e) {
+                db = e.target.result;
+                if (!db.objectStoreNames.contains('media')) {
+                    db.createObjectStore('media', { keyPath: 'id' });
+                }
+            };
+            request.onsuccess = function(e) {
+                db = e.target.result;
+                loadMediaFromDB();
+            };
+            request.onerror = function(e) {
+                console.error("IndexedDB error:", e.target.errorCode);
+            };
+        }
+
+        function loadMediaFromDB() {
+            if(!db) return;
+            const tx = db.transaction("media", "readonly");
+            const store = tx.objectStore("media");
+            const req = store.getAll();
+            req.onsuccess = function() {
+                renderMedia(req.result);
+            };
+        }
+
+        function renderMedia(mediaArray) {
+            const pubList = document.getElementById('pubMediaList');
+            const adList = document.getElementById('adminMediaList');
+            pubList.innerHTML = ''; adList.innerHTML = '';
+
+            if(mediaArray.length === 0) {
+                pubList.innerHTML = `<p style="grid-column: 1/-1; text-align:center;">No media uploaded yet.</p>`;
+            }
+
+            // Reverse to show newest first
+            mediaArray.reverse().forEach(m => {
+                let mediaHtml = '';
+                
+                if(m.type === 'IMAGE') {
+                    mediaHtml = `<img src="${m.data}" alt="${m.title}">`;
+                } else if(m.type === 'VIDEO') {
+                    mediaHtml = `<video src="${m.data}" controls></video>`;
+                } else if(m.type === 'LINK') {
+                    let yId = getYoutubeId(m.data);
+                    if(yId) {
+                        mediaHtml = `<iframe src="https://www.youtube.com/embed/${yId}" allowfullscreen></iframe>`;
+                    } else {
+                        mediaHtml = `<div style="color:white; text-align:center; padding:1rem;"><a href="${m.data}" target="_blank" style="color:var(--primary-hover);">View Video Link</a></div>`;
+                    }
+                }
+
+                // Public
+                pubList.innerHTML += `
+                    <div class="media-card">
+                        <div class="media-content">${mediaHtml}</div>
+                        <div class="media-info">
+                            <span class="media-badge">${m.type}</span>
+                            <h4>${m.title}</h4>
+                            <p>${m.desc}</p>
+                        </div>
+                    </div>`;
+
+                // Admin
+                adList.innerHTML += `
+                    <div class="admin-list-item">
+                        <div>
+                            <span class="media-badge">${m.type}</span> <strong>${m.title}</strong>
+                        </div>
+                        <button class="btn-danger" onclick="deleteMedia(${m.id})">Delete</button>
+                    </div>`;
+            });
+        }
+
+        function saveMedia() {
+            const type = document.getElementById('mediaType').value;
+            const title = document.getElementById('mediaTitle').value.trim();
+            const desc = document.getElementById('mediaDesc').value.trim();
+            const fileInput = document.getElementById('mediaFile');
+            const linkInput = document.getElementById('mediaLinkUrl').value.trim();
+
+            if(!title) return alert("Title is required!");
+
+            let newMedia = { id: Date.now(), type, title, desc, data: "" };
+
+            if(type === 'LINK') {
+                if(!linkInput) return alert("URL is required!");
+                newMedia.data = linkInput;
+                insertMediaDB(newMedia);
+            } else {
+                if(fileInput.files.length === 0) return alert("Please select a file!");
+                const file = fileInput.files[0];
+                
+                // Limit size warning
+                if(file.size > 50 * 1024 * 1024) {
+                    if(!confirm("File is larger than 50MB. It might slow down the browser. Continue?")) return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    newMedia.data = e.target.result;
+                    insertMediaDB(newMedia);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function insertMediaDB(mediaObj) {
+            const tx = db.transaction("media", "readwrite");
+            const store = tx.objectStore("media");
+            store.add(mediaObj);
+            tx.oncomplete = function() {
+                alert("Media saved successfully!");
+                document.getElementById('mediaTitle').value = '';
+                document.getElementById('mediaDesc').value = '';
+                document.getElementById('mediaFile').value = '';
+                document.getElementById('mediaLinkUrl').value = '';
+                loadMediaFromDB();
+            };
+        }
+
+        function deleteMedia(id) {
+            if(!confirm("Are you sure you want to delete this media?")) return;
+            const tx = db.transaction("media", "readwrite");
+            const store = tx.objectStore("media");
+            store.delete(id);
+            tx.oncomplete = function() {
+                loadMediaFromDB();
+            };
+        }
+
+        function toggleMediaInputs() {
+            const type = document.getElementById('mediaType').value;
+            if(type === 'LINK') {
+                document.getElementById('mediaFileGrp').style.display = 'none';
+                document.getElementById('mediaLinkGrp').style.display = 'block';
+            } else {
+                document.getElementById('mediaFileGrp').style.display = 'block';
+                document.getElementById('mediaLinkGrp').style.display = 'none';
+            }
+        }
+
+        function getYoutubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        // --- ADMIN PANEL CORE LOGIC ---
+        window.openAdmin = function() {
+            document.getElementById('adminOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeAdmin = function() {
+            document.getElementById('adminOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // reset view to login if closed completely
+            document.getElementById('loginBox').style.display = 'flex';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('adminPwd').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        };
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const overlay = document.getElementById('adminOverlay');
+            if (event.target === overlay) {
+                window.closeAdmin();
+            }
+        };
+
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                window.closeAdmin();
+            }
+        });
+
+        window.loginAdmin = function() {
+            const pwd = document.getElementById('adminPwd').value;
+            if(pwd === appData.settings.password) {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'flex';
+                document.getElementById('loginError').style.display = 'none';
+                renderAll(); // refresh inputs
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        };
+
+        window.logoutAdmin = function() {
+            window.closeAdmin();
+        };
+
+        function switchAdminTab(tabId, btnElement) {
+            document.querySelectorAll('.admin-panel-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // --- CRUD OPERATIONS ---
+        
+        // Profile
+        function saveProfileData() {
+            appData.profile.name = document.getElementById('aName').value;
+            appData.profile.tagline = document.getElementById('aTagline').value;
+            appData.profile.intro = document.getElementById('aIntro').value;
+            appData.profile.aboutTitle = document.getElementById('aAboutTitle').value;
+            appData.profile.aboutDesc = document.getElementById('aAboutDesc').value;
+            appData.profile.brand = document.getElementById('aBrand').value;
+            appData.profile.work = document.getElementById('aWork').value;
+            appData.profile.goalTitle = document.getElementById('aGoalTitle').value;
+            appData.profile.goalDesc = document.getElementById('aGoalDesc').value;
+            
+            saveData();
+            renderProfile();
+            alert("Profile Saved!");
+        }
+
+        function saveProfileImage() {
+            const file = document.getElementById('aProfImg').files[0];
+            if(!file) return alert("Select an image first.");
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                appData.profile.photo = e.target.result;
+                saveData();
+                renderProfile();
+                alert("Profile Photo Updated!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeProfileImage() {
+            appData.profile.photo = "";
+            saveData();
+            renderProfile();
+            document.getElementById('pubProfileImg').src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2NjYyI+PHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00czEuNzktNCA0LTRzLTQgMS43OS00IDQtMS43OSA0LTQgNHptMCAyYy0yLjY3IDAtOCAxLjM0LTggNHYyYTEgMSAwIDAgMCAxIDFoMTRhMSAxIDAgMCAwIDEtMXYtMmMwLTIuNjYtNS4zMy00LTgtNHoiLz48L3N2Zz4=';
+            alert("Photo removed!");
+        }
+
+        // Contact
+        function saveContactData() {
+            appData.contact.whatsapp = document.getElementById('cWa').value;
+            appData.contact.email = document.getElementById('cEmail').value;
+            appData.contact.instagram = document.getElementById('cIg').value;
+            appData.contact.youtube = document.getElementById('cYt').value;
+            saveData();
+            renderProfile();
+            updateContactLinks();
+            alert("Contacts Saved!");
+        }
+
+        // Services
+        function saveService() {
+            const id = document.getElementById('srvId').value;
+            const icon = document.getElementById('srvIcon').value || '✨';
+            const title = document.getElementById('srvTitle').value.trim();
+            const desc = document.getElementById('srvDesc').value.trim();
+
+            if(!title) return alert("Title is required");
+
+            if(id) {
+                // Edit
+                const idx = appData.services.findIndex(s => s.id == id);
+                if(idx > -1) {
+                    appData.services[idx] = { id: Number(id), icon, title, desc };
+                }
+            } else {
+                // Add
+                appData.services.push({ id: Date.now(), icon, title, desc });
+            }
+
+            saveData();
+            renderServices();
+            resetServiceForm();
+        }
+
+        function editService(id) {
+            const srv = appData.services.find(s => s.id === id);
+            if(srv) {
+                document.getElementById('srvId').value = srv.id;
+                document.getElementById('srvIcon').value = srv.icon;
+                document.getElementById('srvTitle').value = srv.title;
+                document.getElementById('srvDesc').value = srv.desc;
+                document.getElementById('btnSaveSrv').innerText = "Update Service";
+                document.getElementById('btnCancelSrv').style.display = "inline-block";
+                window.location.hash = "tabServices"; // ensure in view
+            }
+        }
+
+        function deleteService(id) {
+            if(!confirm("Delete this service?")) return;
+            appData.services = appData.services.filter(s => s.id !== id);
+            saveData();
+            renderServices();
+        }
+
+        function resetServiceForm() {
+            document.getElementById('srvId').value = "";
+            document.getElementById('srvIcon').value = "";
+            document.getElementById('srvTitle').value = "";
+            document.getElementById('srvDesc').value = "";
+            document.getElementById('btnSaveSrv').innerText = "Add Service";
+            document.getElementById('btnCancelSrv').style.display = "none";
+        }
+
+        // Projects
+        function saveProject() {
+            const id = document.getElementById('projId').value;
+            const title = document.getElementById('projTitle').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+            const link = document.getElementById('projLink').value.trim();
+            const file = document.getElementById('projImgFile').files[0];
+
+            if(!title) return alert("Title is required");
+            if(!desc) return alert("Description is required");
+
+            const saveObj = (imgData) => {
+                if(id) {
+                    const idx = appData.projects.findIndex(p => p.id == id);
+                    if(idx > -1) {
+                        appData.projects[idx].title = title;
+                        appData.projects[idx].desc = desc;
+                        appData.projects[idx].link = link;
+                        if(imgData !== null) appData.projects[idx].image = imgData; // update if new img
+                    }
+                } else {
+                    appData.projects.push({ id: Date.now(), title, desc, link, image: imgData || "" });
+                }
+                saveData();
+                renderProjects();
+                resetProjectForm();
+            };
+
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) { saveObj(e.target.result); };
+                reader.readAsDataURL(file);
+            } else {
+                saveObj(null); // Keep old image if editing, or empty if new
+            }
+        }
+
+        function editProject(id) {
+            const p = appData.projects.find(x => x.id === id);
+            if(p) {
+                document.getElementById('projId').value = p.id;
+                document.getElementById('projTitle').value = p.title;
+                document.getElementById('projDesc').value = p.desc;
+                document.getElementById('projLink').value = p.link || "";
+                document.getElementById('btnSaveProj').innerText = "Update Project";
+                document.getElementById('btnCancelProj').style.display = "inline-block";
+            }
+        }
+
+        function deleteProject(id) {
+            if(!confirm("Delete this project?")) return;
+            appData.projects = appData.projects.filter(p => p.id !== id);
+            saveData();
+            renderProjects();
+        }
+
+        function resetProjectForm() {
+            document.getElementById('projId').value = "";
+            document.getElementById('projTitle').value = "";
+            document.getElementById('projDesc').value = "";
+            document.getElementById('projLink').value = "";
+            document.getElementById('projImgFile').value = "";
+            document.getElementById('btnSaveProj').innerText = "Add Project";
+            document.getElementById('btnCancelProj').style.display = "none";
+        }
+
+        // Settings
+        function changePassword() {
+            const oldP = document.getElementById('pOld').value;
+            const newP = document.getElementById('pNew').value;
+            const confP = document.getElementById('pConfirm').value;
+
+            if(oldP !== appData.settings.password) return alert("Old password incorrect!");
+            if(newP !== confP) return alert("New passwords do not match!");
+            if(newP.length < 4) return alert("Password too short!");
+
+            appData.settings.password = newP;
+            saveData();
+            alert("Password updated successfully!");
+            document.getElementById('pOld').value = "";
+            document.getElementById('pNew').value = "";
+            document.getElementById('pConfirm').value = "";
+        }
+
+        // --- UTILS & UX ---
+        
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('show');
+        }
+
+        function toggleTheme() {
+            let current = document.documentElement.getAttribute('data-theme');
+            let next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('satyamTheme', next);
+            document.getElementById('themeBtn').innerText = next === 'light' ? '🌙' : '☀️';
+        }
+
+        function sendWhatsAppMessage(e) {
+            e.preventDefault();
+            const name = document.getElementById('cwName').value;
+            const subject = document.getElementById('cwSubject').value;
+            const msg = document.getElementById('cwMsg').value;
+            
+            let text = `Hello MR SATYAM PRO,\n\nI am *${name}*.\n*Regarding:* ${subject}\n\n*Message:* ${msg}`;
+            
+            let num = appData.contact.whatsapp.replace(/\D/g,'');
+            let url = `https://wa.me/91${num}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        // Start
+        window.onload = initApp;
+
+    </script>
+</body>
+</html>
